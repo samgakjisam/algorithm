@@ -7,7 +7,7 @@ def find_code(N, M):
 
         for j in range(M - 56 + 1):  # 몇 번째부터 시작?
             code=[]
-            for p in range(0, 48, 8):  # 한 숫자의 시작 점
+            for p in range(0, 50, 7):  # 한 숫자의 시작 점
                 temp = ''  # 7개 훑으면 초기화
 
                 for k in range(7):  # 한 번 훑기
@@ -16,23 +16,24 @@ def find_code(N, M):
                     code.append(num_s[temp])
 
                 if len(code) == 8:
-                    print(code)
-                    sum = 0
+                    summation = 0
+
                     for l in range(8):
                         if l % 2 == 0:
-                           sum += int(code[l]) * 3
+                           summation += int(code[l]) * 3
                         else:
-                            sum += int(code[l])
-                    if sum % 10 == 0:
-                        print(sum)
-                        return code
+                            summation += int(code[l])
+                    if summation % 10 == 0:
+                        return sum(code)
 
-
+    return 0
 
 T = int(input())
 
 for tc in range(1, T + 1):
     N, M = map(int, input().split())
     arr = [list(map(str, input())) for _ in range(N)]
-    # print(arr[0][0])
-    print(find_code(N, M))
+    binary_arr = binary_change(arr)
+    ans = find_code(N, M)
+
+    print(f'#{tc} {ans}')
