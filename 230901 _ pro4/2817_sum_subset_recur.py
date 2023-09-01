@@ -8,6 +8,8 @@ def f(n,r,s): # 조합 만들기
     if r == 0: # 다 만들었을 때
         if s == K:
             cnt += 1
+    elif r > n:
+        return
     else:
         f(n-1,r-1,s+A[n-1])
         f(n-1,r,s)
@@ -18,6 +20,8 @@ for tc in range(1, T + 1):
     A = list(map(int, input().split()))
     cnt = 0
 
-    for i in range(1,N+1):
+    for i in range(1,N+1): # 1개부터 N개까지 뽑을래
         c = [0] * i
         f(N,i,0) # nCr, s는 합
+
+    print(f'#{tc} {cnt}')
